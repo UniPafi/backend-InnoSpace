@@ -3,7 +3,6 @@ package com.innospace.platform.profiles.application.application.internal.queryse
 
 import com.innospace.platform.profiles.domain.aggregates.ManagerProfile;
 import com.innospace.platform.profiles.domain.queries.GetAllManagerProfilesQuery;
-import com.innospace.platform.profiles.domain.queries.GetManagerProfileByEmailQuery;
 import com.innospace.platform.profiles.domain.queries.GetManagerProfileByIdQuery;
 import com.innospace.platform.profiles.domain.queries.GetManagerProfileByUserIdQuery;
 import com.innospace.platform.profiles.domain.services.ManagerProfileQueryService;
@@ -27,10 +26,7 @@ public class ManagerProfileQueryServiceImpl implements ManagerProfileQueryServic
         return managerProfileRepository.findById(query.profileId());
     }
 
-    @Override
-    public Optional<ManagerProfile> handle(GetManagerProfileByEmailQuery query) {
-        return managerProfileRepository.findByEmail(query.email());
-    }
+
 
     @Override
     public List<ManagerProfile> handle(GetAllManagerProfilesQuery query) {

@@ -9,7 +9,6 @@ public class ManagerProfileResourceFromEntityAssembler {
                 entity.getId(),
                 entity.getUserId(),
                 entity.getName(),
-                entity.getEmail(),
                 entity.getPhotoUrl(),
                 entity.getCompanyName(),
                 entity.getFocusArea(),

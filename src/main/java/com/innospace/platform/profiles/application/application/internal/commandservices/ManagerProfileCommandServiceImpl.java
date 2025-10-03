@@ -31,7 +31,7 @@ public class ManagerProfileCommandServiceImpl implements ManagerProfileCommandSe
         if (existing.isEmpty()) return Optional.empty();
 
         var profile = existing.get();
-        profile.updateProfile(command); // Método en el aggregate
+        profile.updateProfile(command);
         return Optional.of(managerProfileRepository.save(profile));
     }
 

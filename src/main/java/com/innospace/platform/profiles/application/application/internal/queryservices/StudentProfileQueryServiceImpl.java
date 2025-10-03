@@ -3,7 +3,6 @@ package com.innospace.platform.profiles.application.application.internal.queryse
 
 import com.innospace.platform.profiles.domain.aggregates.StudentProfile;
 import com.innospace.platform.profiles.domain.queries.GetAllStudentProfilesQuery;
-import com.innospace.platform.profiles.domain.queries.GetStudentProfileByEmailQuery;
 import com.innospace.platform.profiles.domain.queries.GetStudentProfileByIdQuery;
 import com.innospace.platform.profiles.domain.queries.GetStudentProfileByUserIdQuery;
 import com.innospace.platform.profiles.domain.services.StudentProfileQueryService;
@@ -27,10 +26,7 @@ public class StudentProfileQueryServiceImpl implements StudentProfileQueryServic
         return studentProfileRepository.findById(query.profileId());
     }
 
-    @Override
-    public Optional<StudentProfile> handle(GetStudentProfileByEmailQuery query) {
-        return studentProfileRepository.findByEmail(query.email());
-    }
+
 
     @Override
     public List<StudentProfile> handle(GetAllStudentProfilesQuery query) {

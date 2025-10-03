@@ -8,7 +8,6 @@ public class CreateStudentProfileCommandFromResourceAssembler {
         return new CreateStudentProfileCommand(
                 resource.userId(),
                 resource.name(),
-                resource.email(),
                 resource.photoUrl(),
                 resource.skills(),
                 resource.education(),

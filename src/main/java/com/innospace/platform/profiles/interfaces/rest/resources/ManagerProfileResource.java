@@ -6,7 +6,6 @@ public record ManagerProfileResource(
         Long id,
         Long userId,
         String name,
-        String email,
         String photoUrl,
         String companyName,
         String focusArea,

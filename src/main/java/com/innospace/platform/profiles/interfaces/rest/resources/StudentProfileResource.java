@@ -7,7 +7,6 @@ public record StudentProfileResource(
         Long id,
         Long userId,
         String name,
-        String email,
         String photoUrl,
         Set<String> skills,
         Set<String> education,

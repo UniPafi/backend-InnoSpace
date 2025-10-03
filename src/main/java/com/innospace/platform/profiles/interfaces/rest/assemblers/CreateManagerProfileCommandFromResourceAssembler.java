@@ -8,7 +8,6 @@ public class CreateManagerProfileCommandFromResourceAssembler {
         return new CreateManagerProfileCommand(
                 resource.userId(),
                 resource.name(),
-                resource.email(),
                 resource.photoUrl(),
                 resource.companyName(),
                 resource.focusArea(),
