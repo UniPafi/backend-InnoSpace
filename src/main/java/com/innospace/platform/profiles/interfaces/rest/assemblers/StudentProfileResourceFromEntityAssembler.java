@@ -9,7 +9,6 @@ public class StudentProfileResourceFromEntityAssembler {
                 entity.getId(),
                 entity.getUserId(),
                 entity.getName(),
-                entity.getEmail(),
                 entity.getPhotoUrl(),
                 entity.getSkills(),
                 entity.getEducation(),

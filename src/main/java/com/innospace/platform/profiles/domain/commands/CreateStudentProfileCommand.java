@@ -5,7 +5,6 @@ import java.util.Set;
 public record CreateStudentProfileCommand(
         Long userId,
         String name,
-        String email,
         String photoUrl,
         Set<String> skills,
         Set<String> education,

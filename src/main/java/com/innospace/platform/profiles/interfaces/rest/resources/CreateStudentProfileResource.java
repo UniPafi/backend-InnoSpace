@@ -6,7 +6,6 @@ import java.util.Set;
 public record CreateStudentProfileResource(
         Long userId,
         String name,
-        String email,
         String photoUrl,
         Set<String> skills,
         Set<String> education,

@@ -23,8 +23,6 @@ public class ManagerProfile extends AuditableAbstractAggregateRoot<ManagerProfil
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false, unique = true)
-    private String email;
 
     private String photoUrl;
 
@@ -39,7 +37,6 @@ public class ManagerProfile extends AuditableAbstractAggregateRoot<ManagerProfil
     public ManagerProfile(CreateManagerProfileCommand command) {
         this.userId = command.userId();
         this.name = command.name();
-        this.email = command.email();
         this.photoUrl = command.photoUrl();
         this.companyName = command.companyName();
         this.focusArea = command.focusArea();

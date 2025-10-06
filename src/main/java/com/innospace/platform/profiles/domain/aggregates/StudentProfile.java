@@ -23,8 +23,6 @@ public class StudentProfile extends AuditableAbstractAggregateRoot<StudentProfil
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false, unique = true)
-    private String email;
 
     private String photoUrl;
 
@@ -48,7 +46,6 @@ public class StudentProfile extends AuditableAbstractAggregateRoot<StudentProfil
     public StudentProfile(CreateStudentProfileCommand command) {
         this.userId = command.userId();
         this.name = command.name();
-        this.email = command.email();
         this.photoUrl = command.photoUrl();
         if (command.skills() != null) this.skills.addAll(command.skills());
         if (command.education() != null) this.education.addAll(command.education());
