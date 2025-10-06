@@ -31,6 +31,10 @@ public class User extends AuditableAbstractAggregateRoot<User> {
         this.accountType = accountType;
     }
 
+
+
+
+
     public User updateEmail(String newEmail) {
         this.email = newEmail;
         return this;
