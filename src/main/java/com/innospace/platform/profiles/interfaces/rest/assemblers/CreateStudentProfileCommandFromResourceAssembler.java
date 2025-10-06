@@ -9,8 +9,9 @@ public class CreateStudentProfileCommandFromResourceAssembler {
                 resource.userId(),
                 resource.name(),
                 resource.photoUrl(),
+                resource.description(),
+                resource.phoneNumber(),
                 resource.skills(),
-                resource.education(),
                 resource.experiences()
         );
     }

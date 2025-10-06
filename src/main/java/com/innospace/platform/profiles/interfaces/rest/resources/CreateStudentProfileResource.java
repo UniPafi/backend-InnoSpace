@@ -7,7 +7,8 @@ public record CreateStudentProfileResource(
         Long userId,
         String name,
         String photoUrl,
+        String description,
+        String phoneNumber,
         Set<String> skills,
-        Set<String> education,
         Set<String> experiences
 ) {}

@@ -1,9 +1,8 @@
-package com.innospace.platform.profiles.domain.commands;
+package com.innospace.platform.profiles.interfaces.rest.resources;
 
 import java.util.Set;
 
-public record UpdateManagerProfileCommand(
-        Long id,
+public record UpdateManagerProfileResource(
         String name,
         String photoUrl,
         String description,
