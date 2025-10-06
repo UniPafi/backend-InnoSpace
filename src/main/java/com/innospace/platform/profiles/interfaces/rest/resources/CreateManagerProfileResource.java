@@ -6,6 +6,8 @@ public record CreateManagerProfileResource(
         Long userId,
         String name,
         String photoUrl,
+       String description,
+        String phoneNumber,
         String companyName,
         String focusArea,
         Set<String> companyTechnologies

@@ -9,6 +9,8 @@ public class CreateManagerProfileCommandFromResourceAssembler {
                 resource.userId(),
                 resource.name(),
                 resource.photoUrl(),
+                resource.description(),
+                resource.phoneNumber(),
                 resource.companyName(),
                 resource.focusArea(),
                 resource.companyTechnologies()

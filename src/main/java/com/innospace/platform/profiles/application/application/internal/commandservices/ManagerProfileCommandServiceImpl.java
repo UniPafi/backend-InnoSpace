@@ -27,7 +27,7 @@ public class ManagerProfileCommandServiceImpl implements ManagerProfileCommandSe
 
     @Override
     public Optional<ManagerProfile> handle(UpdateManagerProfileCommand command) {
-        var existing = managerProfileRepository.findById(command.profileId());
+        var existing = managerProfileRepository.findById(command.id());
         if (existing.isEmpty()) return Optional.empty();
 
         var profile = existing.get();

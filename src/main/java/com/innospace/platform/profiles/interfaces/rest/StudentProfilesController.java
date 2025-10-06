@@ -6,8 +6,10 @@ import com.innospace.platform.profiles.domain.services.StudentProfileCommandServ
 import com.innospace.platform.profiles.domain.services.StudentProfileQueryService;
 import com.innospace.platform.profiles.interfaces.rest.assemblers.CreateStudentProfileCommandFromResourceAssembler;
 import com.innospace.platform.profiles.interfaces.rest.assemblers.StudentProfileResourceFromEntityAssembler;
+import com.innospace.platform.profiles.interfaces.rest.assemblers.UpdateStudentProfileCommandFromResourceAssembler;
 import com.innospace.platform.profiles.interfaces.rest.resources.CreateStudentProfileResource;
 import com.innospace.platform.profiles.interfaces.rest.resources.StudentProfileResource;
+import com.innospace.platform.profiles.interfaces.rest.resources.UpdateStudentProfileResource;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -67,4 +69,29 @@ public class StudentProfilesController {
                 .toList();
         return ResponseEntity.ok(resources);
     }
+
+
+
+    @PutMapping("/{id}")
+    @Operation(summary = "Update a student profile by ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Student profile updated"),
+            @ApiResponse(responseCode = "404", description = "Profile not found")
+    })
+    public ResponseEntity<StudentProfileResource> updateStudentProfile(
+            @PathVariable Long id,
+            @RequestBody UpdateStudentProfileResource resource) {
+
+        var command = UpdateStudentProfileCommandFromResourceAssembler.toCommandFromResource(id, resource);
+        var updatedProfile = studentProfileCommandService.handle(command);
+
+        if (updatedProfile.isEmpty()) return ResponseEntity.notFound().build();
+
+        var profileResource = StudentProfileResourceFromEntityAssembler.toResourceFromEntity(updatedProfile.get());
+        return ResponseEntity.ok(profileResource);
+    }
 }
+
+
+
+

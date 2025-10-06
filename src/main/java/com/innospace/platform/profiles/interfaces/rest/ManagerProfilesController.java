@@ -6,8 +6,10 @@ import com.innospace.platform.profiles.domain.services.ManagerProfileCommandServ
 import com.innospace.platform.profiles.domain.services.ManagerProfileQueryService;
 import com.innospace.platform.profiles.interfaces.rest.assemblers.CreateManagerProfileCommandFromResourceAssembler;
 import com.innospace.platform.profiles.interfaces.rest.assemblers.ManagerProfileResourceFromEntityAssembler;
+import com.innospace.platform.profiles.interfaces.rest.assemblers.UpdateManagerProfileCommandFromResourceAssembler;
 import com.innospace.platform.profiles.interfaces.rest.resources.CreateManagerProfileResource;
 import com.innospace.platform.profiles.interfaces.rest.resources.ManagerProfileResource;
+import com.innospace.platform.profiles.interfaces.rest.resources.UpdateManagerProfileResource;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -67,4 +69,25 @@ public class ManagerProfilesController {
                 .toList();
         return ResponseEntity.ok(resources);
     }
+
+
+    @PutMapping("/{id}")
+    @Operation(summary = "Update a manager profile by ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Manager profile updated"),
+            @ApiResponse(responseCode = "404", description = "Profile not found")
+    })
+    public ResponseEntity<ManagerProfileResource> updateManagerProfile(
+            @PathVariable Long id,
+            @RequestBody UpdateManagerProfileResource resource) {
+
+        var command = UpdateManagerProfileCommandFromResourceAssembler.toCommandFromResource(id, resource);
+        var updatedProfile = managerProfileCommandService.handle(command);
+
+        if (updatedProfile.isEmpty()) return ResponseEntity.notFound().build();
+
+        var profileResource = ManagerProfileResourceFromEntityAssembler.toResourceFromEntity(updatedProfile.get());
+        return ResponseEntity.ok(profileResource);
+    }
 }
+

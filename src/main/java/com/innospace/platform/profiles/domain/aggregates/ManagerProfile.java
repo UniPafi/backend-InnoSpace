@@ -26,6 +26,9 @@ public class ManagerProfile extends AuditableAbstractAggregateRoot<ManagerProfil
 
     private String photoUrl;
 
+    private String description;
+    private String phoneNumber;
+
     private String companyName;
     private String focusArea;
 

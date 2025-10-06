@@ -21,20 +21,18 @@ public class StudentProfileCommandServiceImpl implements StudentProfileCommandSe
 
     @Override
     public Optional<StudentProfile> handle(CreateStudentProfileCommand command) {
-        // Basic: create and save
+
         var profile = new StudentProfile(command);
         return Optional.of(studentProfileRepository.save(profile));
     }
 
     @Override
     public Optional<StudentProfile> handle(UpdateStudentProfileCommand command) {
-        var existing = studentProfileRepository.findById(command.profileId());
+        var existing = studentProfileRepository.findById(command.id());
         if (existing.isEmpty()) return Optional.empty();
 
         var profile = existing.get();
         profile.updateProfile(command);
         return Optional.of(studentProfileRepository.save(profile));
     }
-
-
 }

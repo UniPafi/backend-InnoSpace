@@ -11,7 +11,6 @@ public class StudentProfileResourceFromEntityAssembler {
                 entity.getName(),
                 entity.getPhotoUrl(),
                 entity.getSkills(),
-                entity.getEducation(),
                 entity.getExperiences()
         );
     }

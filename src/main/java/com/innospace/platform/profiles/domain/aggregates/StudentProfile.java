@@ -26,15 +26,15 @@ public class StudentProfile extends AuditableAbstractAggregateRoot<StudentProfil
 
     private String photoUrl;
 
+    private String description;
+    private String phoneNumber;
+
+
     @ElementCollection
     @CollectionTable(name = "student_skills", joinColumns = @JoinColumn(name = "student_id"))
     @Column(name = "skill")
     private Set<String> skills = new HashSet<>();
 
-    @ElementCollection
-    @CollectionTable(name = "student_education", joinColumns = @JoinColumn(name = "student_id"))
-    @Column(name = "education_entry")
-    private Set<String> education = new HashSet<>();
 
     @ElementCollection
     @CollectionTable(name = "student_experiences", joinColumns = @JoinColumn(name = "student_id"))
@@ -48,22 +48,24 @@ public class StudentProfile extends AuditableAbstractAggregateRoot<StudentProfil
         this.name = command.name();
         this.photoUrl = command.photoUrl();
         if (command.skills() != null) this.skills.addAll(command.skills());
-        if (command.education() != null) this.education.addAll(command.education());
+        if (command.experiences() != null) this.experiences.addAll(command.experiences());
+
+        if (command.skills() != null) this.skills.addAll(command.skills());
         if (command.experiences() != null) this.experiences.addAll(command.experiences());
     }
 
 
     public void updateProfile(UpdateStudentProfileCommand cmd) {
-        this.name = cmd.name();
-        this.photoUrl = cmd.photoUrl();
+        if (cmd.name() != null) this.name = cmd.name();
+        if (cmd.photoUrl() != null) this.photoUrl = cmd.photoUrl();
+        if (cmd.description() != null) this.description = cmd.description();
+        if (cmd.phoneNumber() != null) this.phoneNumber = cmd.phoneNumber();
+
         if (cmd.skills() != null) {
             this.skills.clear();
             this.skills.addAll(cmd.skills());
         }
-        if (cmd.education() != null) {
-            this.education.clear();
-            this.education.addAll(cmd.education());
-        }
+
         if (cmd.experiences() != null) {
             this.experiences.clear();
             this.experiences.addAll(cmd.experiences());

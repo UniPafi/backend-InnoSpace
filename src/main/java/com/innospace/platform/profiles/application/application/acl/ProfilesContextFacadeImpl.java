@@ -10,8 +10,7 @@ import com.innospace.platform.profiles.domain.services.StudentProfileCommandServ
 import com.innospace.platform.profiles.interfaces.acl.ProfilesContextFacade;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
-@Service
+import java.util.Set;@Service
 public class ProfilesContextFacadeImpl implements ProfilesContextFacade {
 
     private final StudentProfileCommandService studentProfileCommandService;
@@ -31,7 +30,8 @@ public class ProfilesContextFacadeImpl implements ProfilesContextFacade {
                         userId,
                         name,
                         null,
-                        Set.of(),
+                        null,
+                        null,
                         Set.of(),
                         Set.of()
                 );
@@ -43,6 +43,8 @@ public class ProfilesContextFacadeImpl implements ProfilesContextFacade {
                 var command = new CreateManagerProfileCommand(
                         userId,
                         name,
+                        null,
+                        null,
                         null,
                         null,
                         null,
