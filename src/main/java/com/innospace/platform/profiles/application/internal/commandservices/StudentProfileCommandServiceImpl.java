@@ -1,4 +1,4 @@
-package com.innospace.platform.profiles.application.application.internal.commandservices;
+package com.innospace.platform.profiles.application.internal.commandservices;
 
 
 import com.innospace.platform.profiles.domain.aggregates.StudentProfile;

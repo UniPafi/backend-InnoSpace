@@ -1,4 +1,4 @@
-package com.innospace.platform.profiles.application.application.internal.queryservices;
+package com.innospace.platform.profiles.application.internal.queryservices;
 
 
 import com.innospace.platform.profiles.domain.aggregates.ManagerProfile;
