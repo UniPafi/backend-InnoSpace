@@ -1,4 +1,4 @@
-package com.innospace.platform.profiles.application.application.acl;
+package com.innospace.platform.profiles.application.acl;
 
 import com.innospace.platform.iam.domain.model.valueobjects.AccountType;
 import com.innospace.platform.profiles.domain.aggregates.ManagerProfile;
