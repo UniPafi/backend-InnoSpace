@@ -27,7 +27,7 @@ public class OpenApiConfiguration {
     // Methods
 
     @Bean
-    public OpenAPI plantsyncPlatformOpenApi() {
+    public OpenAPI innospacePlatformOpenApi() {
         // General configuration
         var openApi = new OpenAPI();
         openApi
@@ -38,7 +38,7 @@ public class OpenApiConfiguration {
                         .license(new License().name("Apache 2.0")
                                 .url("https://springdoc.org")))
                 .externalDocs(new ExternalDocumentation()
-                        .description("PlantSync wiki Documentation")
+                        .description("Innospace wiki Documentation")
                 );
 
         // Add a security scheme
