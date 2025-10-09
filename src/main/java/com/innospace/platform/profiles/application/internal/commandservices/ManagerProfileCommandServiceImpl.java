@@ -1,13 +1,11 @@
 package com.innospace.platform.profiles.application.internal.commandservices;
 
-
 import com.innospace.platform.profiles.domain.aggregates.ManagerProfile;
 import com.innospace.platform.profiles.domain.commands.CreateManagerProfileCommand;
 import com.innospace.platform.profiles.domain.commands.UpdateManagerProfileCommand;
 import com.innospace.platform.profiles.domain.services.ManagerProfileCommandService;
 import com.innospace.platform.profiles.infrastructure.persistence.jpa.repositories.ManagerProfileRepository;
 import org.springframework.stereotype.Service;
-
 import java.util.Optional;
 
 @Service
@@ -34,6 +32,5 @@ public class ManagerProfileCommandServiceImpl implements ManagerProfileCommandSe
         profile.updateProfile(command);
         return Optional.of(managerProfileRepository.save(profile));
     }
-
 
 }
