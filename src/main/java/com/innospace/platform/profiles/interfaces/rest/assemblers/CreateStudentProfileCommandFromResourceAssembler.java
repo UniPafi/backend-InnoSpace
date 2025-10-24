@@ -11,6 +11,7 @@ public class CreateStudentProfileCommandFromResourceAssembler {
                 resource.photoUrl(),
                 resource.description(),
                 resource.phoneNumber(),
+                resource.portfolioUrl(),
                 resource.skills(),
                 resource.experiences()
         );

@@ -14,6 +14,7 @@ public class ManagerProfileResourceFromEntityAssembler {
                 entity.getPhoneNumber(),
                 entity.getCompanyName(),
                 entity.getFocusArea(),
+                entity.getLocation(),
                 entity.getCompanyTechnologies()
         );
     }

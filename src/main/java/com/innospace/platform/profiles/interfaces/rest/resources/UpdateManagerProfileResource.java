@@ -9,5 +9,6 @@ public record UpdateManagerProfileResource(
         String phoneNumber,
         String companyName,
         String focusArea,
+        String location,
         Set<String> companyTechnologies
 ) {}

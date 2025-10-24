@@ -9,6 +9,7 @@ public record CreateStudentProfileResource(
         String photoUrl,
         String description,
         String phoneNumber,
+        String portfolioUrl,
         Set<String> skills,
         Set<String> experiences
 ) {}

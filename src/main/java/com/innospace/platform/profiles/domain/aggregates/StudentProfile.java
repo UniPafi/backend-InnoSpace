@@ -23,9 +23,9 @@ public class StudentProfile extends AuditableAbstractAggregateRoot<StudentProfil
     @Column(nullable = false)
     private String name;
 
-
+    @Column(name = "photo_url", columnDefinition = "LONGTEXT")
     private String photoUrl;
-
+    private String portfolioUrl;
     private String description;
     private String phoneNumber;
 
@@ -47,6 +47,10 @@ public class StudentProfile extends AuditableAbstractAggregateRoot<StudentProfil
         this.userId = command.userId();
         this.name = command.name();
         this.photoUrl = command.photoUrl();
+        this.description = command.description();
+        this.phoneNumber = command.phoneNumber();
+        this.portfolioUrl = command.portfolioUrl();
+
         if (command.skills() != null) this.skills.addAll(command.skills());
         if (command.experiences() != null) this.experiences.addAll(command.experiences());
 
@@ -60,7 +64,7 @@ public class StudentProfile extends AuditableAbstractAggregateRoot<StudentProfil
         if (cmd.photoUrl() != null) this.photoUrl = cmd.photoUrl();
         if (cmd.description() != null) this.description = cmd.description();
         if (cmd.phoneNumber() != null) this.phoneNumber = cmd.phoneNumber();
-
+        if (cmd.portfolioUrl() != null) this.portfolioUrl = cmd.portfolioUrl();
         if (cmd.skills() != null) {
             this.skills.clear();
             this.skills.addAll(cmd.skills());

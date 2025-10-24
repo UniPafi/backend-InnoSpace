@@ -6,5 +6,7 @@ public record CreateOpportunityResource(
         Long companyId,
         String title,
         String description,
+        String summary,
+        String category,
         List<String> requirements
 ) {}

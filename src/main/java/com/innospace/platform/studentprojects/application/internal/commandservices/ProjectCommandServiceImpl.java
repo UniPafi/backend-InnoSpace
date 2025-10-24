@@ -20,11 +20,10 @@ public class ProjectCommandServiceImpl implements ProjectCommandService {
     @Override
     public Optional<Project> handle(CreateProjectCommand command) {
         var project = new Project(
-                command.studentId(),
-                command.title(),
-                command.description()
+                command
         );
-        return Optional.of(projectRepository.save(project));
+        var created = projectRepository.save(project);
+        return Optional.of(created);
     }
 
     @Override
@@ -33,7 +32,7 @@ public class ProjectCommandServiceImpl implements ProjectCommandService {
         if (existing.isEmpty()) return Optional.empty();
 
         var project = existing.get();
-        project.update(command);
+        project.updateProject(command);
         return Optional.of(projectRepository.save(project));
     }
 

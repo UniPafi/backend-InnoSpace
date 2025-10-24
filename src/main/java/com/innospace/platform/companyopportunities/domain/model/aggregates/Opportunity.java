@@ -25,6 +25,14 @@ public class Opportunity extends AuditableAbstractAggregateRoot<Opportunity> {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String description;
 
+
+    @Column(length = 255)
+    private String summary;
+
+    @Column(length = 100)
+    private String category;
+
+
     @ElementCollection
     @CollectionTable(name = "opportunity_requirements", joinColumns = @JoinColumn(name = "opportunity_id"))
     @Column(name = "requirement")
@@ -40,6 +48,8 @@ public class Opportunity extends AuditableAbstractAggregateRoot<Opportunity> {
         this.companyId = command.companyId();
         this.title = command.title();
         this.description = command.description();
+        this.summary = command.summary();
+        this.category = command.category();
         this.requirements = command.requirements();
         this.status = OpportunityStatus.DRAFT;
     }
@@ -51,7 +61,8 @@ public class Opportunity extends AuditableAbstractAggregateRoot<Opportunity> {
     public void update(UpdateOpportunityCommand command) {
         if (this.status == OpportunityStatus.CLOSED)
             throw new IllegalStateException("Cannot update a closed opportunity.");
-
+        if (command.summary() != null) this.summary = command.summary();
+        if (command.category() != null) this.category = command.category();
         this.title = command.title();
         this.description = command.description();
         this.requirements = command.requirements();

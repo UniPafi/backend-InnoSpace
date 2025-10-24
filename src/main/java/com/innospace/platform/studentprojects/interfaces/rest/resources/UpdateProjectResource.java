@@ -2,5 +2,7 @@ package com.innospace.platform.studentprojects.interfaces.rest.resources;
 
 public record UpdateProjectResource(
         String title,
-        String description
+        String description,
+        String summary,
+        String category
 ) {}
