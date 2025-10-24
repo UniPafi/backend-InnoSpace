@@ -7,7 +7,7 @@ import com.innospace.platform.studentprojects.domain.model.commands.UpdateProjec
 import com.innospace.platform.studentprojects.domain.model.valueobjects.ProjectStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+
 
 @Getter
 @Entity
