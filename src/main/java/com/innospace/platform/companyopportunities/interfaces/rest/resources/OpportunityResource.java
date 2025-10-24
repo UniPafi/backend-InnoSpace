@@ -9,6 +9,8 @@ public record OpportunityResource(
         Long companyId,
         String title,
         String description,
+        String summary,
+        String category,
         List<String> requirements,
         OpportunityStatus status
 ) {}

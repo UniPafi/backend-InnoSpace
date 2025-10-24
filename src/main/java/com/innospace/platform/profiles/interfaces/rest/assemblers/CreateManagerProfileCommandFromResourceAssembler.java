@@ -13,6 +13,7 @@ public class CreateManagerProfileCommandFromResourceAssembler {
                 resource.phoneNumber(),
                 resource.companyName(),
                 resource.focusArea(),
+                resource.location(),
                 resource.companyTechnologies()
         );
     }

@@ -10,7 +10,9 @@ public class UpdateProjectCommandFromResourceAssembler {
         return new UpdateProjectCommand(
                 id,
                 resource.title(),
-                resource.description()
+                resource.description(),
+                resource.summary(),
+                resource.category()
         );
     }
 }

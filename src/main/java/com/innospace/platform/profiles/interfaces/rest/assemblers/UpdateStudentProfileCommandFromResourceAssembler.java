@@ -12,6 +12,7 @@ public class UpdateStudentProfileCommandFromResourceAssembler {
                 resource.photoUrl(),
                 resource.description(),
                 resource.phoneNumber(),
+                resource.portfolioUrl(),
                 resource.skills(),
                 resource.experiences()
         );

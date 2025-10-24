@@ -9,6 +9,8 @@ public class CreateOpportunityCommandFromResourceAssembler {
                 resource.companyId(),
                 resource.title(),
                 resource.description(),
+                resource.summary(),
+                resource.category(),
                 resource.requirements()
         );
     }

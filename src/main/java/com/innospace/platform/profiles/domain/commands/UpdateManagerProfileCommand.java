@@ -10,5 +10,6 @@ public record UpdateManagerProfileCommand(
         String phoneNumber,
         String companyName,
         String focusArea,
+        String location,
         Set<String> companyTechnologies
 ) {}

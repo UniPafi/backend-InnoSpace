@@ -10,6 +10,8 @@ public class OpportunityResourceFromEntityAssembler {
                 entity.getCompanyId(),
                 entity.getTitle(),
                 entity.getDescription(),
+                entity.getSummary(),
+                entity.getCategory(),
                 entity.getRequirements(),
                 entity.getStatus()
         );

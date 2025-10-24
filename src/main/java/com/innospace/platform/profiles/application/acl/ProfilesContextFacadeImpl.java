@@ -32,6 +32,7 @@ public class ProfilesContextFacadeImpl implements ProfilesContextFacade {
                         null,
                         null,
                         null,
+                        null,
                         Set.of(),
                         Set.of()
                 );
@@ -43,6 +44,7 @@ public class ProfilesContextFacadeImpl implements ProfilesContextFacade {
                 var command = new CreateManagerProfileCommand(
                         userId,
                         name,
+                        null,
                         null,
                         null,
                         null,

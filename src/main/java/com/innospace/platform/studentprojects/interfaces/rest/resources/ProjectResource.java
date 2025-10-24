@@ -7,6 +7,8 @@ public record ProjectResource(
         Long studentId,
         String title,
         String description,
+        String summary,
+        String category,
         ProjectStatus status
 
 ) {}

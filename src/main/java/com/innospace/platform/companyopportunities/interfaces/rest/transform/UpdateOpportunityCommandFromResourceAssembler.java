@@ -10,6 +10,8 @@ public class UpdateOpportunityCommandFromResourceAssembler {
                 id,
                 resource.title(),
                 resource.description(),
+                resource.summary(),
+                resource.category(),
                 resource.requirements()
         );
     }

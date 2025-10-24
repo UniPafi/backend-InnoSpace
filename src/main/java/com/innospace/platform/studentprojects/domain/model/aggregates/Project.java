@@ -23,6 +23,13 @@ public class Project extends AuditableAbstractAggregateRoot<Project> {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String description;
 
+
+    @Column(length = 255)
+    private String summary;
+
+    @Column(length = 100)
+    private String category;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private ProjectStatus status;
@@ -32,22 +39,19 @@ public class Project extends AuditableAbstractAggregateRoot<Project> {
         this.studentId = command.studentId();
         this.title = command.title();
         this.description = command.description();
+        this.summary = command.summary();
+        this.category = command.category();
         this.status = ProjectStatus.DRAFT;
     }
-    public Project(Long studentId, String title, String description) {
-        this.studentId = studentId;
-        this.title = title;
-        this.description = description;
-        this.status = ProjectStatus.valueOf("DRAFT");
-    }
+
+
     protected Project() {}
 
-    public void update(UpdateProjectCommand command) {
-        if (this.status == ProjectStatus.COMPLETED)
-            throw new IllegalStateException("Cannot update a completed project.");
-
-        this.title = command.title();
-        this.description = command.description();
+    public void updateProject(UpdateProjectCommand command) {
+        if (command.title() != null) this.title = command.title();
+        if (command.description() != null) this.description = command.description();
+        if (command.summary() != null) this.summary = command.summary();
+        if (command.category() != null) this.category = command.category();
     }
 
     public void publish() {

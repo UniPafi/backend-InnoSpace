@@ -14,6 +14,7 @@ public class UpdateManagerProfileCommandFromResourceAssembler {
                 resource.phoneNumber(),
                 resource.companyName(),
                 resource.focusArea(),
+                resource.location(),
                 resource.companyTechnologies()
         );
     }

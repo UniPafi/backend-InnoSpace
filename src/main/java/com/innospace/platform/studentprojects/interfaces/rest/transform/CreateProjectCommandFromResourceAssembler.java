@@ -9,7 +9,9 @@ public class CreateProjectCommandFromResourceAssembler {
         return new CreateProjectCommand(
                 resource.studentId(),
                 resource.title(),
-                resource.description()
+                resource.description(),
+                resource.summary(),
+                resource.category()
         );
     }
 }

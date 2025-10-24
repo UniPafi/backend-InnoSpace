@@ -5,5 +5,7 @@ import java.util.List;
 public record UpdateOpportunityResource(
         String title,
         String description,
+        String summary,
+        String category,
         List<String> requirements
 ) {}

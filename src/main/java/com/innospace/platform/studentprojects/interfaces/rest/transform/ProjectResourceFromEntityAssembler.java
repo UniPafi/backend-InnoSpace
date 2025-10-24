@@ -12,6 +12,8 @@ public class ProjectResourceFromEntityAssembler {
                 entity.getStudentId(),
                 entity.getTitle(),
                 entity.getDescription(),
+                entity.getSummary(),
+                entity.getCategory(),
                 entity.getStatus()
 
         );

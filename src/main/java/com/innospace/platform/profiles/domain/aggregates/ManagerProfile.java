@@ -23,9 +23,9 @@ public class ManagerProfile extends AuditableAbstractAggregateRoot<ManagerProfil
     @Column(nullable = false)
     private String name;
 
-
+    @Column(name = "photo_url", columnDefinition = "LONGTEXT")
     private String photoUrl;
-
+    private String location;
     private String description;
     private String phoneNumber;
 
@@ -41,16 +41,23 @@ public class ManagerProfile extends AuditableAbstractAggregateRoot<ManagerProfil
         this.userId = command.userId();
         this.name = command.name();
         this.photoUrl = command.photoUrl();
+        this.description = command.description();
+        this.phoneNumber = command.phoneNumber();
         this.companyName = command.companyName();
         this.focusArea = command.focusArea();
+        this.location = command.location();
         if (command.companyTechnologies() != null) this.companyTechnologies.addAll(command.companyTechnologies());
     }
+
 
     public void updateProfile(UpdateManagerProfileCommand cmd) {
         this.name = cmd.name();
         this.photoUrl = cmd.photoUrl();
+        this.description = cmd.description();
+        this.phoneNumber = cmd.phoneNumber();
         this.companyName = cmd.companyName();
         this.focusArea = cmd.focusArea();
+        if (cmd.location() != null) this.location = cmd.location();
         if (cmd.companyTechnologies() != null) {
             this.companyTechnologies.clear();
             this.companyTechnologies.addAll(cmd.companyTechnologies());
