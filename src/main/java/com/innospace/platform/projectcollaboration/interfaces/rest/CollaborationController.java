@@ -3,8 +3,10 @@ package com.innospace.platform.projectcollaboration.interfaces.rest;
 import com.innospace.platform.projectcollaboration.domain.model.commands.AcceptCollaborationCommand;
 import com.innospace.platform.projectcollaboration.domain.model.commands.RejectCollaborationCommand;
 import com.innospace.platform.projectcollaboration.domain.model.queries.GetCollaborationRequestsByProjectIdQuery;
+import com.innospace.platform.projectcollaboration.domain.model.services.CollaborationCardQueryService;
 import com.innospace.platform.projectcollaboration.domain.model.services.CollaborationCommandService;
 import com.innospace.platform.projectcollaboration.domain.model.services.CollaborationQueryService;
+import com.innospace.platform.projectcollaboration.interfaces.rest.resources.CollaborationCardResource;
 import com.innospace.platform.projectcollaboration.interfaces.rest.resources.CollaborationRequestResource;
 import com.innospace.platform.projectcollaboration.interfaces.rest.resources.CreateCollaborationRequestResource;
 import com.innospace.platform.projectcollaboration.interfaces.rest.transform.CollaborationRequestResourceFromEntityAssembler;
@@ -23,6 +25,7 @@ public class CollaborationController {
 
     private final CollaborationCommandService commandService;
     private final CollaborationQueryService queryService;
+
 
     public CollaborationController(CollaborationCommandService commandService, CollaborationQueryService queryService) {
         this.commandService = commandService;
@@ -55,6 +58,8 @@ public class CollaborationController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+
+
 
     @GetMapping("/project/{projectId}")
     public ResponseEntity<List<CollaborationRequestResource>> getByProject(@PathVariable Long projectId) {
