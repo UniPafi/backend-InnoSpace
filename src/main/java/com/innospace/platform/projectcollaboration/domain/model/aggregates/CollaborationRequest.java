@@ -1,5 +1,6 @@
 package com.innospace.platform.projectcollaboration.domain.model.aggregates;
 
+import com.innospace.platform.projectcollaboration.domain.model.valueobjects.CollaborationStatus;
 import com.innospace.platform.projectcollaboration.domain.model.valueobjects.StudentResponseStatus;
 import com.innospace.platform.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
 import jakarta.persistence.*;
@@ -13,9 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CollaborationRequest extends AuditableAbstractAggregateRoot<CollaborationRequest> {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+
 
     @Column(name = "project_id", nullable = false)
     private Long projectId;
@@ -26,18 +25,26 @@ public class CollaborationRequest extends AuditableAbstractAggregateRoot<Collabo
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
+    private CollaborationStatus status;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private StudentResponseStatus studentResponse;
+
+    protected CollaborationRequest() {}
 
     public CollaborationRequest(Long projectId, Long managerId) {
         this.projectId = projectId;
         this.managerId = managerId;
+        this.status = CollaborationStatus.PENDING;
         this.studentResponse = StudentResponseStatus.PENDING;
     }
 
+    public void accept() {
+        this.studentResponse = StudentResponseStatus.ACCEPTED;
+    }
 
-    public void respond(StudentResponseStatus response) {
-        if (this.studentResponse != StudentResponseStatus.PENDING)
-            throw new IllegalStateException("Student already responded.");
-        this.studentResponse = response;
+    public void reject() {
+        this.studentResponse = StudentResponseStatus.REJECTED;
     }
 }
