@@ -9,9 +9,7 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @Entity
-@Table(name = "collaboration_requests",
-        uniqueConstraints = @UniqueConstraint(columnNames = {"project_id", "manager_id"}))
-@NoArgsConstructor
+@Table(name = "collaboration_requests", uniqueConstraints = @UniqueConstraint(columnNames = {"project_id", "manager_id"}))
 public class CollaborationRequest extends AuditableAbstractAggregateRoot<CollaborationRequest> {
 
 
