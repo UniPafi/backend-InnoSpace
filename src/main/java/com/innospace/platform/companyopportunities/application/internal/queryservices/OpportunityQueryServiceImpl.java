@@ -2,7 +2,8 @@ package com.innospace.platform.companyopportunities.application.internal.queryse
 
 
 import com.innospace.platform.companyopportunities.domain.model.aggregates.Opportunity;
-import com.innospace.platform.companyopportunities.domain.model.queries.GetAllCompanyOpportunitiesQuery;
+import com.innospace.platform.companyopportunities.domain.model.queries.GetAllCompanyOpportunitiesByCompanyIdQuery;
+import com.innospace.platform.companyopportunities.domain.model.queries.GetAllOpportunitiesQuery;
 import com.innospace.platform.companyopportunities.domain.model.queries.GetOpportunityByIdQuery;
 import com.innospace.platform.companyopportunities.domain.model.queries.ValidateOpportunityOwnershipQuery;
 import com.innospace.platform.companyopportunities.domain.services.OpportunityQueryService;
@@ -27,7 +28,11 @@ public class OpportunityQueryServiceImpl implements OpportunityQueryService {
     }
 
     @Override
-    public List<Opportunity> handle(GetAllCompanyOpportunitiesQuery query) {
+    public List<Opportunity> handle(GetAllOpportunitiesQuery query) {
+        return opportunityRepository.findAll();
+    }
+    @Override
+    public List<Opportunity> handle(GetAllCompanyOpportunitiesByCompanyIdQuery query) {
         return opportunityRepository.findAllByCompanyId(query.companyId());
     }
 

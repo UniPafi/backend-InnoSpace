@@ -1,3 +1,3 @@
 package com.innospace.platform.companyopportunities.domain.model.queries;
 
-public record GetAllCompanyOpportunitiesQuery(Long companyId) {}
+public record GetAllCompanyOpportunitiesByCompanyIdQuery(Long companyId) {}
