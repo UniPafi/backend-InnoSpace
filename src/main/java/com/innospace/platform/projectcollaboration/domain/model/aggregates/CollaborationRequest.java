@@ -40,9 +40,11 @@ public class CollaborationRequest extends AuditableAbstractAggregateRoot<Collabo
 
     public void accept() {
         this.studentResponse = StudentResponseStatus.ACCEPTED;
+        this.status = CollaborationStatus.CONFIRMED;
     }
 
     public void reject() {
         this.studentResponse = StudentResponseStatus.REJECTED;
+        this.status = CollaborationStatus.REJECTED;
     }
 }

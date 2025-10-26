@@ -30,7 +30,11 @@ public class CollaborationCommandServiceImpl implements CollaborationCommandServ
         var request = repository.findById(command.collaborationId());
         if (request.isEmpty()) return Optional.empty();
         request.get().accept();
+
+
+
         return Optional.of(repository.save(request.get()));
+
     }
 
     @Override
