@@ -33,7 +33,6 @@ public class CollaborationCardQueryService {
     public List<CollaborationCardResource> getCardsByProject(Long projectId) {
         var collaborations = collaborationRepository.findAllByProjectId(projectId);
 
-        // Carga masiva de IDs para evitar N+1 queries
         var projectIds = collaborations.stream()
                 .map(CollaborationRequest::getProjectId)
                 .collect(Collectors.toSet());
