@@ -4,7 +4,8 @@ package com.innospace.platform.companyopportunities.interfaces.rest;
 import com.innospace.platform.companyopportunities.domain.model.commands.CloseOpportunityCommand;
 import com.innospace.platform.companyopportunities.domain.model.commands.DeleteOpportunityCommand;
 import com.innospace.platform.companyopportunities.domain.model.commands.PublishOpportunityCommand;
-import com.innospace.platform.companyopportunities.domain.model.queries.GetAllCompanyOpportunitiesQuery;
+import com.innospace.platform.companyopportunities.domain.model.queries.GetAllCompanyOpportunitiesByCompanyIdQuery;
+import com.innospace.platform.companyopportunities.domain.model.queries.GetAllOpportunitiesQuery;
 import com.innospace.platform.companyopportunities.domain.model.queries.GetOpportunityByIdQuery;
 import com.innospace.platform.companyopportunities.domain.services.OpportunityCommandService;
 import com.innospace.platform.companyopportunities.domain.services.OpportunityQueryService;
@@ -14,6 +15,7 @@ import com.innospace.platform.companyopportunities.interfaces.rest.resources.Upd
 import com.innospace.platform.companyopportunities.interfaces.rest.transform.CreateOpportunityCommandFromResourceAssembler;
 import com.innospace.platform.companyopportunities.interfaces.rest.transform.OpportunityResourceFromEntityAssembler;
 import com.innospace.platform.companyopportunities.interfaces.rest.transform.UpdateOpportunityCommandFromResourceAssembler;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -45,7 +47,7 @@ public class OpportunityController {
 
     @GetMapping("/company/{companyId}")
     public List<OpportunityResource> getAllCompanyOpportunities(@PathVariable Long companyId) {
-        var query = new GetAllCompanyOpportunitiesQuery(companyId);
+        var query = new GetAllCompanyOpportunitiesByCompanyIdQuery(companyId);
         return queryService.handle(query)
                 .stream()
                 .map(OpportunityResourceFromEntityAssembler::toResourceFromEntity)
@@ -96,5 +98,16 @@ public class OpportunityController {
     public ResponseEntity<Void> deleteOpportunity(@PathVariable Long id) {
         commandService.handle(new DeleteOpportunityCommand(id));
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping
+    @Operation(summary = "Get all opportunities")
+    public ResponseEntity<List<OpportunityResource>> getAllOpportunities() {
+        var opportunities = queryService.handle(new GetAllOpportunitiesQuery());
+        if (opportunities.isEmpty()) return ResponseEntity.notFound().build();
+        var resources = opportunities.stream()
+                .map(OpportunityResourceFromEntityAssembler::toResourceFromEntity)
+                .toList();
+        return ResponseEntity.ok(resources);
     }
 }

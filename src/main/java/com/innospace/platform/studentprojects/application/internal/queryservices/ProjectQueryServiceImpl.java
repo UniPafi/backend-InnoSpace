@@ -2,7 +2,8 @@ package com.innospace.platform.studentprojects.application.internal.queryservice
 
 
 import com.innospace.platform.studentprojects.domain.model.aggregates.Project;
-import com.innospace.platform.studentprojects.domain.model.queries.GetAllStudentProjectsQuery;
+import com.innospace.platform.studentprojects.domain.model.queries.GetAllProjectsQuery;
+import com.innospace.platform.studentprojects.domain.model.queries.GetAllStudentProjectsByIdQuery;
 import com.innospace.platform.studentprojects.domain.model.queries.GetProjectByIdQuery;
 import com.innospace.platform.studentprojects.domain.model.queries.ValidateProjectOwnershipQuery;
 import com.innospace.platform.studentprojects.domain.services.ProjectQueryService;
@@ -27,8 +28,12 @@ public class ProjectQueryServiceImpl implements ProjectQueryService {
     }
 
     @Override
-    public List<Project> handle(GetAllStudentProjectsQuery query) {
+    public List<Project> handle(GetAllStudentProjectsByIdQuery query) {
         return projectRepository.findAllByStudentId(query.studentId());
+    }
+    @Override
+    public List<Project> handle(GetAllProjectsQuery query) {
+        return projectRepository.findAll();
     }
 
     @Override

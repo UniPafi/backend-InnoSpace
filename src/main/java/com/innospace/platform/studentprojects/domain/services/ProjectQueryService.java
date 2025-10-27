@@ -1,7 +1,8 @@
 package com.innospace.platform.studentprojects.domain.services;
 
 import com.innospace.platform.studentprojects.domain.model.aggregates.Project;
-import com.innospace.platform.studentprojects.domain.model.queries.GetAllStudentProjectsQuery;
+import com.innospace.platform.studentprojects.domain.model.queries.GetAllProjectsQuery;
+import com.innospace.platform.studentprojects.domain.model.queries.GetAllStudentProjectsByIdQuery;
 import com.innospace.platform.studentprojects.domain.model.queries.GetProjectByIdQuery;
 import com.innospace.platform.studentprojects.domain.model.queries.ValidateProjectOwnershipQuery;
 
@@ -12,7 +13,8 @@ public interface ProjectQueryService {
 
     Optional<Project> handle(GetProjectByIdQuery query);
 
-    List<Project> handle(GetAllStudentProjectsQuery query);
+    List<Project> handle(GetAllStudentProjectsByIdQuery query);
 
     boolean handle(ValidateProjectOwnershipQuery query);
+    List<Project> handle(GetAllProjectsQuery query);
 }

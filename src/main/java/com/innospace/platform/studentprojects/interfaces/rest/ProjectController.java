@@ -6,9 +6,9 @@ import com.innospace.platform.studentprojects.application.internal.queryservices
 import com.innospace.platform.studentprojects.domain.model.commands.DeleteProjectCommand;
 import com.innospace.platform.studentprojects.domain.model.commands.FinalizeProjectCommand;
 import com.innospace.platform.studentprojects.domain.model.commands.PublishProjectCommand;
-import com.innospace.platform.studentprojects.domain.model.queries.GetAllStudentProjectsQuery;
+import com.innospace.platform.studentprojects.domain.model.queries.GetAllProjectsQuery;
+import com.innospace.platform.studentprojects.domain.model.queries.GetAllStudentProjectsByIdQuery;
 import com.innospace.platform.studentprojects.domain.model.queries.GetProjectByIdQuery;
-import com.innospace.platform.studentprojects.domain.services.ProjectQueryService;
 import com.innospace.platform.studentprojects.interfaces.rest.resources.CreateProjectResource;
 import com.innospace.platform.studentprojects.interfaces.rest.resources.ProjectResource;
 import com.innospace.platform.studentprojects.interfaces.rest.resources.UpdateProjectResource;
@@ -38,6 +38,18 @@ public class ProjectController {
     }
 
 
+    @GetMapping
+    @Operation(summary = "Get all projects")
+    public ResponseEntity<List<ProjectResource>> getAllProjects() {
+        var projects = projectQueryService.handle(new GetAllProjectsQuery());
+        if (projects.isEmpty()) return ResponseEntity.notFound().build();
+        var resources = projects.stream()
+                .map(ProjectResourceFromEntityAssembler::toResource)
+                .toList();
+        return ResponseEntity.ok(resources);
+    }
+
+
     @GetMapping("/{id}")
     @Operation(summary = "Get a project by ID")
     public ResponseEntity<ProjectResource> getProjectById(@PathVariable Long id) {
@@ -52,7 +64,7 @@ public class ProjectController {
     @GetMapping("/student/{studentId}")
     @Operation(summary = "Get projects by student ID")
     public ResponseEntity<List<ProjectResource>> getAllStudentProjects(@PathVariable Long studentId) {
-        var query = new GetAllStudentProjectsQuery(studentId);
+        var query = new GetAllStudentProjectsByIdQuery(studentId);
         var projects = projectQueryService.handle(query)
                 .stream()
                 .map(ProjectResourceFromEntityAssembler::toResource)
