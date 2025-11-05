@@ -28,4 +28,16 @@ public class StudentApplicationCardController {
         if (cards.isEmpty()) return ResponseEntity.noContent().build();
         return ResponseEntity.ok(cards);
     }
+
+
+    @GetMapping("/students/{studentId}")
+    public ResponseEntity<List<StudentApplicationCardResource>> getApplicationsByStudent(@PathVariable Long studentId) {
+        var cards = queryService.getApplicationsByStudent(studentId);
+        if (cards.isEmpty()) return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(cards);
+    }
+
+
+
+
 }

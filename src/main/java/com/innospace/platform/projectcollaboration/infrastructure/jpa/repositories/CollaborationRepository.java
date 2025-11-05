@@ -9,4 +9,8 @@ import java.util.List;
 @Repository
 public interface CollaborationRepository extends JpaRepository<CollaborationRequest, Long> {
     List<CollaborationRequest> findAllByProjectId(Long projectId);
+
+
+    List<CollaborationRequest> findAllByManagerId(Long managerId);
+
 }
