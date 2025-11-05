@@ -27,4 +27,11 @@ public class CollaborationCardController {
         var cards = queryService.getCardsByProject(projectId);
         return ResponseEntity.ok(cards);
     }
+
+    @GetMapping("/managers/{managerId}")
+    public ResponseEntity<List<CollaborationCardResource>> getCardsByManager(@PathVariable Long managerId) {
+        var cards = queryService.getCardsByManager(managerId);
+        return ResponseEntity.ok(cards);
+    }
+
 }
