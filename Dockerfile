@@ -1,4 +1,4 @@
-FROM openjdk:24-jdk
+FROM eclipse-temurin:24-jdk
 VOLUME /tmp
 EXPOSE 8080
 COPY target/platform-0.0.1-SNAPSHOT.jar app.jar
