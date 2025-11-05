@@ -29,10 +29,16 @@ public class CollaborationCardQueryService {
         this.projectRepository = projectRepository;
         this.managerRepository = managerRepository;
     }
-
     public List<CollaborationCardResource> getCardsByProject(Long projectId) {
-        var collaborations = collaborationRepository.findAllByProjectId(projectId);
+        return mapCollaborations(collaborationRepository.findAllByProjectId(projectId));
+    }
 
+
+    public List<CollaborationCardResource> getCardsByManager(Long managerId) {
+        return mapCollaborations(collaborationRepository.findAllByManagerId(managerId));
+    }
+
+    private List<CollaborationCardResource> mapCollaborations(List<CollaborationRequest> collaborations) {
         var projectIds = collaborations.stream()
                 .map(CollaborationRequest::getProjectId)
                 .collect(Collectors.toSet());

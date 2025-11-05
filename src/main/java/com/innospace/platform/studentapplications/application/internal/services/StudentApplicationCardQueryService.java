@@ -2,6 +2,7 @@ package com.innospace.platform.studentapplications.application.internal.services
 
 import com.innospace.platform.companyopportunities.infrastructure.persistence.jpa.repositories.OpportunityRepository;
 import com.innospace.platform.profiles.infrastructure.persistence.jpa.repositories.StudentProfileRepository;
+import com.innospace.platform.studentapplications.domain.model.aggregates.StudentApplication;
 import com.innospace.platform.studentapplications.infrastructure.jpa.repositories.StudentApplicationRepository;
 import com.innospace.platform.studentapplications.interfaces.rest.resources.StudentApplicationCardResource;
 import org.springframework.stereotype.Service;
@@ -27,8 +28,14 @@ public class StudentApplicationCardQueryService {
     }
 
     public List<StudentApplicationCardResource> getApplicationsByOpportunity(Long opportunityId) {
-        var applications = repository.findAllByOpportunityId(opportunityId);
+        return mapApplications(repository.findAllByOpportunityId(opportunityId));
+    }
 
+    public List<StudentApplicationCardResource> getApplicationsByStudent(Long studentId) {
+        return mapApplications(repository.findAllByStudentId(studentId));
+    }
+
+    private List<StudentApplicationCardResource> mapApplications(List<StudentApplication> applications) {
         return applications.stream()
                 .map(app -> {
                     var opp = opportunityRepository.findById(app.getOpportunityId()).orElse(null);
@@ -49,4 +56,5 @@ public class StudentApplicationCardQueryService {
                 .filter(Objects::nonNull)
                 .toList();
     }
+
 }
